@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, jsonify
 # --- Optional AI Integration ---
 try:
     import google.generativeai as genai
-    genai.configure(api_key="")  # Your API key
+    genai.configure(api_key="GEMINI_API_KEY")  # Your API key
     gemini_model = genai.GenerativeModel('gemini-1.5-flash-latest')
     AI_ENABLED = True
     print("✅ Gemini AI features enabled.")
