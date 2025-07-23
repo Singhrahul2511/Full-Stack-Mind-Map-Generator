@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Mind Map Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app-container">
+        <div id="toolbar">
+            <div class="toolbar-section">
+                <h2>Mind Map Generator</h2>
+                <div class="topic-generator">
+                    <input type="text" id="topic-input" placeholder="Enter a central topic...">
+                    <button id="generate-btn" title="Generate mind map from topic">🚀 Generate</button>
+                </div>
+            </div>
+            <div class="toolbar-section controls">
+                <button id="add-node-btn" title="Add a child to the selected node">➕ Add</button>
+                <button id="delete-node-btn" title="Delete selected node">🗑️ Delete</button>
+                <button id="save-json-btn" title="Save mind map as JSON">💾 Save</button>
+                 <label for="load-json-input" class="file-label" title="Load mind map from JSON">
+                    📂 Load
+                    <input type="file" id="load-json-input" accept=".json">
+                </label>
+                <button id="export-png-btn" title="Export as PNG">🖼️ PNG</button>
+                <button id="export-svg-btn" title="Export as SVG">📄 SVG</button>
+            </div>
+        </div>
+
+        <div id="mindmap-container">
+            <div id="loader" class="hidden"></div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@2.10.1/dist/dom-to-image-more.min.js"></script>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

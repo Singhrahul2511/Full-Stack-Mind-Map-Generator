@@ -1,0 +1,4 @@
+Flask==3.0.3
+gunicorn==22.0.0
+# Add this line if you use the AI features
+google-generativeai==0.7.2
