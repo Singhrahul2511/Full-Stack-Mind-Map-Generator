@@ -2,16 +2,24 @@ import os
 import json
 from flask import Flask, render_template, request, jsonify
 
-# --- Optional AI Integration ---
+# --- Secure AI Integration ---
+AI_ENABLED = False
 try:
     import google.generativeai as genai
-    genai.configure(api_key="GEMINI_API_KEY")  # Your API key
-    gemini_model = genai.GenerativeModel('gemini-1.5-flash-latest')
-    AI_ENABLED = True
-    print("✅ Gemini AI features enabled.")
+    # This securely reads the key from the environment variable
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if api_key:
+        genai.configure(api_key=api_key)
+        gemini_model = genai.GenerativeModel('gemini-1.5-flash-latest')
+        AI_ENABLED = True
+        print("✅ Gemini AI features enabled.")
+    else:
+        print("⚠️ Gemini API key environment variable not found. AI features disabled.")
+except ImportError:
+    print("⚠️ google.generativeai library not found. AI features disabled.")
 except Exception as e:
-    print(f"⚠️ Gemini not enabled: {e}")
-    AI_ENABLED = False
+    print(f"⚠️ An error occurred during Gemini setup: {e}")
+
 
 # --- Flask App Initialization ---
 app = Flask(__name__)
@@ -65,4 +73,5 @@ def suggest_subtopics():
 
 # --- Run Server ---
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # For production on Render, Gunicorn will be used. This is for local dev.
+    app.run(debug=False, port=5000)
