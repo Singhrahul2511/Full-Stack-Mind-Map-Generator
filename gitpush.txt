@@ -1,0 +1,15 @@
+ Use Git and Push to GitHub
+Render deploys directly from a Git repository. If your project isn't already in Git, you'll need to upload it to a service like GitHub.
+
+Initialize Git: git init
+
+Add all files: git add .
+
+Commit your changes: git commit -m "Prepare for deployment"
+
+Create a repository on GitHub and push your code to it.
+
+
+git remote add origin https://github.com/Singhrahul2511/Full-Stack-Mind-Map-Generator.git
+git branch -M main
+git push -u origin main
